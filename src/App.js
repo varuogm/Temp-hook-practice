@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BackIMg from "../src/flower.jpg";
-import IMg from "../src/i2xmhay.jpg";
+//import IMg from "../src/i2xmhay.jpg";
+//import Butterfly from "../src/butterfly.jpg";
+//import RealFlower from "../src/realFlower.jpg";
 //import useWindowSize from "react-use/lib/useWindowSize";
-import Confetti from "react-confetti";
+//import Confetti from "react-confetti";
+
+const FriendsArr = ["Gourav", "chnadresh", "hardik", "bhanu", "yash"];
 
 export default function App() {
   var name = "gourav";
-  var place = "Kota";
+  var place = "Kota ";
 
-  //const { width, height } = useWindowSize();
+  // const { width, height } = useWindowSize();
 
   const [Redlikes, setRedLikes] = useState(10);
-  const [Bluelikes, setBlueLikes] = useState(10);
+  const [Bluelikes, setBlueLikes] = useState(20);
+  const [Input, setInput] = useState("");
 
   function likeClickHandlerRed() {
-    <Confetti />;
-    setRedLikes(Redlikes + 1000);
+    setRedLikes(Redlikes + 100);
   }
   function likeClickHandlerBlue() {
     setBlueLikes(Bluelikes - 10);
@@ -25,7 +29,8 @@ export default function App() {
     <div
       style={{
         backgroundImage: `url(${BackIMg})`,
-        height: "100vh",
+
+        height: "100%",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         textAlign: "center",
@@ -46,6 +51,7 @@ export default function App() {
 
       <h1>my fav place is {place}</h1>
       <div
+        className="buttons-div"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -79,6 +85,38 @@ export default function App() {
           </button>
         </div>
       </div>
+      <hr />
+
+      <div className="printing array">
+        <h2>my friends name are</h2>
+
+        <ul>
+          {FriendsArr.map(function (item) {
+            return <p>{item}</p>;
+          })}
+          <p> {Input}</p>
+        </ul>
+
+        <input
+          type="text"
+          placeholder="enter your friend name"
+          onChange={(event) => setInput(event.target.value)}
+        />
+      </div>
+      <p
+        style={{
+          color: "white",
+          textShadow: "0 0 2px #000",
+          padding: "20px 20px",
+          background: "linear-gradient(to top, #42275a, #734b6d)",
+          //textShadow: "2px 2px 4px black",
+        }}
+      >
+        current winner is{" "}
+        {Bluelikes > Redlikes
+          ? " BTS with" + Bluelikes
+          : "one direction with " + Redlikes + " points"}
+      </p>
     </div>
   );
 }
